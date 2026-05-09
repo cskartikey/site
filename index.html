@@ -24,6 +24,18 @@
     </p>
   </body>
   <script>
+	function typewrite(el, text, speed, done) {
+		var i = 0;
+		var timer = setInterval(function() {
+			el.textContent += text[i];
+			i++;
+			if (i >= text.length) {
+				clearInterval(timer);
+				if (done) done();
+			}
+		}, speed);
+	}
+
 	function changeText() {
 		let button = document.getElementById('clack-clack');
 		if (button.innerText === "Click Me!") {
@@ -44,7 +56,15 @@
 		else if (button.innerText === "If you click me again, you'll regret it") {
 			document.body.innerHTML = ""
 			setTimeout(function(){
-				document.body.innerHTML = "<p>So you're still here??</p>"
+				document.body.innerHTML = "<p id='typewriter-line-1'></p><p id='typewriter-line-2'></p>"
+				typewrite(document.getElementById('typewriter-line-1'), "So you're still here??", 60, function() {
+					setTimeout(function() {
+						typewrite(document.getElementById('typewriter-line-2'), "fine... here's a reward for you", 60, function() {
+							var audio = new Audio('reward.mp3');
+							audio.play();
+						});
+					}, 600);
+				});
 			}, 2000);
 		}
 	}
