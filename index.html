@@ -18,7 +18,33 @@
     </p>
     <p>
       ...and now that you're here. I think you should see something fun..
-      <button>Click Me</button>
+      <button onclick="changeText()" id="clack-clack">Click Me!</button>
     </p>
   </body>
+  <script>
+	function changeText() {
+		let button = document.getElementById('clack-clack');
+		if (button.innerText === "Click Me!") {
+			button.innerText = "it hurts? don't click again";
+		} 
+		else if (button.innerText === "it hurts? don't click again") {
+			button.innerText = "ghhh,,, guess u'll keep clicking";
+		} 
+		else if (button.innerText === "ghhh,,, guess u'll keep clicking") {
+			button.innerText = "How would you feel if I click you?";
+		}
+		else if (button.innerText === "How would you feel if I click you?") {
+			button.innerText = "Are you Rowan???";
+		}
+		else if (button.innerText === "Are you Rowan???") {
+			button.innerText = "If you click me again, you'll regret it";
+		}
+		else if (button.innerText === "If you click me again, you'll regret it") {
+			document.body.innerHTML = ""
+			setTimeout(function(){
+				document.body.innerHTML = "<p>So you're still here??</p>"
+			}, 2000);
+		}
+	}
+  </script>
 </html>
